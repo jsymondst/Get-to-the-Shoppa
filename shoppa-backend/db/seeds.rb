@@ -7,9 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-User.create(username: "jamie", password: "jamie")
+jamie = User.create(username: "jamie", password: "jamie")
 
-User.create(username: "mina", password:"mina")
+mina = User.create(username: "mina", password:"mina")
 
 puts "created Jamie and Mina"
 
@@ -369,3 +369,38 @@ products = [
 Product.create(products)
 
 puts "imported products"
+
+list_one_items = [
+    {product: 'burgers', category: 'Meat'}, 
+    {product: 'sausages', category: 'Meat'}, 
+    {product: 'burger buns', category: 'Bread'}, 
+    {product: 'lettuce', category: 'produce'},
+    {product: 'tomatoes', category: 'produce'},
+]
+
+def create_random_list(list_size)
+    list_items = []
+
+    list_size.times do 
+        random_product = Product.all.sample
+        list_items << {
+            product: random_product.product,
+            category: random_product.category
+        }
+    end
+
+    return list_items
+
+end
+
+
+
+l1 = List.create(name: "Saturday BBQ", listjson: JSON(list_one_items))
+
+l2 = List.create(name: "Random items 1", listjson: JSON(create_random_list(20)))
+
+Right.create(user: jamie, list: l1)
+Right.create(user: jamie, list: l2)
+
+puts "created l1 and l2"
+

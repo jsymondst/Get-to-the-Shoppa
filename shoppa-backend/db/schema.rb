@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_06_134410) do
+ActiveRecord::Schema.define(version: 2020_07_07_160757) do
 
   create_table "lists", force: :cascade do |t|
     t.string "name"
     t.string "listjson"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "icon"
   end
 
   create_table "products", force: :cascade do |t|
