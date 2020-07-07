@@ -1,4 +1,5 @@
-import React from 'react'
+import React , {Fragment} from 'react'
+
 
 export default class Nav extends React.Component{
 
@@ -6,10 +7,10 @@ export default class Nav extends React.Component{
     loggedInContent = () =>{
         const {user, logOut} = this.props
         return (
-            <div>
+            <Fragment>
                 <h1>Welcome, {user}</h1>
                 <button onClick={logOut}>Logout</button>
-            </div>
+            </Fragment>
         )
     }
 
