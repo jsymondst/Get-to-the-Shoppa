@@ -1,12 +1,9 @@
 import React from 'react';
-import './App.css';
-import Nav from './Nav'
-import Main from './Main'
-import Login from './Login'
+import Nav from './components/Nav'
+import Main from './components/Main'
+import Login from './components/Login'
 
 const API_URL = "http://localhost:3001/"
-
-
 
 class App extends React.Component {
 
@@ -88,6 +85,7 @@ class App extends React.Component {
         user={user}
         />
         {this.renderLoginOrMain()}
+        <Main />
       </div>
       
     );
