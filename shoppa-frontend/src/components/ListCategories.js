@@ -1,5 +1,5 @@
 import React from 'react'
-import TodoItem from '../../../../../shopping/src/components/TodoItem'
+import TodoItem from './TodoItem'
 
 export default class ListCategories extends React.Component { 
 
@@ -8,7 +8,7 @@ export default class ListCategories extends React.Component {
        items.map (item => {
        return <TodoItem 
                 key={item.id} title={item.title}
-                thihandleDelete = {() => handleDelete(item.id)}
+                handleDelete = {() => handleDelete(item.id)}
                 handleEdit = {() => handleEdit(item.id)} />
                 })
    }
@@ -16,6 +16,7 @@ export default class ListCategories extends React.Component {
     render() {
         return (
             <>
+            <h1>Current List</h1>
             <div>
                 {this.renderItems()}
             </div>

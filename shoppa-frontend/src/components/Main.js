@@ -1,8 +1,8 @@
 import React from 'react'
-import Input from './components/Input'
-import ControlsBar from './components/ControlsBar'
-import ListView from './components/ListView'
-import ListCategories from './components/ListCategories'
+import InputNew from './InputNew'
+import ControlsBar from './ControlsBar'
+import ListView from './ListView'
+import ListCategories from './ListCategories'
 import { Grid } from 'semantic-ui-react'
 // import Speech from './components/Speech'
 
@@ -44,15 +44,11 @@ export default class App extends React.Component {
     render() { 
         return (
             <>
-            <h1>Get to the Shoppa</h1>
-            <p>logged in as {this.props.user}</p>
+            {/* <p>logged in as {this.props.user}</p> */}
             <Grid celled>
-                <Grid.Row>
-                    <Grid.Column width={4}>
-                                <ListView />
-                    </Grid.Column>
+                <Grid.Row className="segment centered">
                     <Grid.Column width={9}>
-                                <Input 
+                                <InputNew
                                     item={this.state.item}
                                     handleChange={this.handleChange}
                                     handleSubmit={this.handleSubmit}
@@ -65,7 +61,7 @@ export default class App extends React.Component {
                                     clearList={this.clearList}
                                 />
                     </Grid.Column>
-                    <Grid.Column width={3}>
+                    <Grid.Column width={6}>
                     <ControlsBar />
                     </Grid.Column>
                     </Grid.Row>
