@@ -2,6 +2,7 @@ import React from "react";
 import Nav from "./components/Nav";
 import Main from "./components/Main";
 import Login from "./components/Login";
+import TestButtons from "./components/TestButtons";
 
 const API_URL = "http://localhost:3001/";
 
@@ -109,7 +110,7 @@ class App extends React.Component {
         const { user } = this.state;
         return (
             <div>
-                <Nav
+                <TestButtons
                     logOut={this.logOut}
                     user={user}
                     fetchGetWithToken={this.fetchGetWithToken}

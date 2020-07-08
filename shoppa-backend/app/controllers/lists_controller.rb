@@ -6,10 +6,29 @@ class ListsController < ApplicationController
             {
                 name: list.name,
                 id: list.id,
+                icon: list.icon,
                 products: list.listjson ? JSON.parse(list.listjson) : [] 
             }
         }
-        render json: all_lists       
+        render json: all_lists, status: :ok   
+    end
+
+    def show
+        list = List.find_by(id: params[:id])
+
+        if !list
+            render json:{error: "list not found"}, status: :not_found
+        elsif !list.users.any?{|user| user.id == current_user.id} 
+            render json: {error: "not authorized"}, status: :unauthorized
+        else
+            list_hash = {
+                name: list.name,
+                id: list.id,
+                icon: list.icon,
+                products: list.listjson ? JSON.parse(list.listjson) : [] 
+            }
+            render json: list_hash, status: :ok
+        end
     end
 
     def create
@@ -50,7 +69,7 @@ class ListsController < ApplicationController
 
     def update
         id = params[:id]
-        list = List.find_by(id: params [:id])
+        list = List.find_by(id: params[:id])
 
         if !list
             render json:{error: "list not found"}, status: :not_found
