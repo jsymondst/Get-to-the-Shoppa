@@ -1,9 +1,9 @@
-import React from "react";
-import Input from "./Input";
-import ControlsBar from "./ControlsBar";
-import ListView from "./ListView";
-import ListCategories from "./ListCategories";
-import { Grid } from "semantic-ui-react";
+import React from 'react'
+import InputNew from './InputNew'
+import ControlsBar from './ControlsBar'
+import ListView from './ListView'
+import ListCategories from './ListCategories'
+import { Grid } from 'semantic-ui-react'
 // import Speech from './components/Speech'
 
 export default class Main extends React.Component {
@@ -44,30 +44,26 @@ export default class Main extends React.Component {
     render() {
         return (
             <>
-                <h1>Get to the Shoppa</h1>
-                <p>logged in as {this.props.user}</p>
-                <Grid celled>
-                    <Grid.Row>
-                        <Grid.Column width={4}>
-                            <ListView />
-                        </Grid.Column>
-                        <Grid.Column width={9}>
-                            <Input
-                                item={this.state.item}
-                                handleChange={this.handleChange}
-                                handleSubmit={this.handleSubmit}
-                                editItem={this.state.editItem}
-                            />
-                            <ListCategories
-                                items={this.state.items}
-                                handleDelete={this.handleDelete}
-                                handleEdit={this.handleEdit}
-                                clearList={this.clearList}
-                            />
-                        </Grid.Column>
-                        <Grid.Column width={3}>
-                            <ControlsBar />
-                        </Grid.Column>
+            {/* <p>logged in as {this.props.user}</p> */}
+            <Grid celled>
+                <Grid.Row className="segment centered">
+                    <Grid.Column width={9}>
+                                <InputNew
+                                    item={this.state.item}
+                                    handleChange={this.handleChange}
+                                    handleSubmit={this.handleSubmit}
+                                    editItem={this.state.editItem}
+                                />
+                                <ListCategories 
+                                    items={this.state.items}
+                                    handleDelete={this.handleDelete} 
+                                    handleEdit={this.handleEdit}
+                                    clearList={this.clearList}
+                                />
+                    </Grid.Column>
+                    <Grid.Column width={6}>
+                    <ControlsBar />
+                    </Grid.Column>
                     </Grid.Row>
                 </Grid>
             </>

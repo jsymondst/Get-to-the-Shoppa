@@ -1,8 +1,11 @@
 import React from "react";
-import Nav from "./components/Nav";
-import Main from "./components/Main";
-import Login from "./components/Login";
+import Nav from './components/Nav'
+import Login from './components/Login'
 import TestButtons from "./components/TestButtons";
+import Main from './components/Main'
+import NavBar from './components/NavBar'
+import SideBarNew from './components/SideBarNew'
+
 
 const API_URL = "http://localhost:3001/";
 
@@ -106,22 +109,55 @@ class App extends React.Component {
         });
     };
 
-    render() {
-        const { user } = this.state;
-        return (
-            <div>
-                <TestButtons
+//     render() {
+//         const { user } = this.state;
+//         return (
+//             <div>
+//                 <TestButtons
+//                     logOut={this.logOut}
+//                     user={user}
+//                     fetchGetWithToken={this.fetchGetWithToken}
+//                     fetchPostWithToken={this.fetchPostWithToken}
+//                     deleteList={this.deleteList}
+//                 />
+//                 {this.renderLoginOrMain()}
+//                 {/* <Main /> */}
+//             </div>
+//         );
+//     }
+//   }
+
+  updateAppUser = (username) =>{
+    this.setState({
+      user: username
+    })
+  }
+
+
+
+  render() {
+    const {user} = this.state
+    return (
+      <div>
+        {/* <Nav
+        logOut={this.logOut}
+        user={user}
+        /> */}
+        <NavBar />
+        <TestButtons
                     logOut={this.logOut}
                     user={user}
                     fetchGetWithToken={this.fetchGetWithToken}
                     fetchPostWithToken={this.fetchPostWithToken}
                     deleteList={this.deleteList}
                 />
-                {this.renderLoginOrMain()}
-                {/* <Main /> */}
-            </div>
-        );
-    }
+        {/* {this.renderLoginOrMain()} */}
+        <SideBarNew />
+        {/* <Main /> */}
+      </div>
+      
+    );
+  }
 }
 
 export default App;
