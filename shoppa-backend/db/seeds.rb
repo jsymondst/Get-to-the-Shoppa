@@ -366,6 +366,11 @@ products = [
 
 ]
 
+products.each{|product|
+    product[:product] = product[:product].downcase
+    product[:category] = product[:category].capitalize
+}
+
 Product.create(products)
 
 puts "imported products"
