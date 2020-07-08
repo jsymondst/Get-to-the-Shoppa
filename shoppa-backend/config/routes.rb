@@ -11,9 +11,9 @@ Rails.application.routes.draw do
   get '/checkin/', to: 'users#checkin'
 
   get '/lists/', to: 'lists#index'
-
-  
-
+  post '/lists/', to: 'list#create'
+  delete '/lists/:id', to:  'list#delete'
+  patch 'lists/:id', to: 'list.update'
 
 
 

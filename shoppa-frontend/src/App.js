@@ -27,12 +27,38 @@ class App extends React.Component {
         return localStorage.getItem("userJWT");
     };
 
-    fetchWithToken = (path) => {
+    fetchGetWithToken = (path, method = "get") => {
         return fetch(`${API_URL}${path}`, {
             headers: {
                 Authorization: `Bearer ${this.getToken()}`,
             },
         });
+    };
+
+    fetchPostWithToken = (path, payload) => {
+        const configObj = {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${this.getToken()}`,
+                "Content-Type": "application/json",
+                Accept: "application/json",
+            },
+            body: JSON.stringify(payload),
+        };
+        // console.log(configObj);
+        return fetch(`${API_URL}${path}`, configObj);
+    };
+
+    deleteList = (id) => {
+        const configObj = {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${this.getToken()}`,
+            },
+        };
+        fetch(`${API_URL}lists/${id}`, configObj)
+            .then((res) => res.json())
+            .then(console.log);
     };
 
     checkIn = () => {
@@ -41,7 +67,7 @@ class App extends React.Component {
         //         Authorization: `Bearer ${this.getToken()}`,
         //     },
         // })
-        this.fetchWithToken("checkin")
+        this.fetchGetWithToken("checkin")
             .then((res) => res.json())
             .then((data) => {
                 if (data.user) {
@@ -86,7 +112,9 @@ class App extends React.Component {
                 <Nav
                     logOut={this.logOut}
                     user={user}
-                    fetchWithToken={this.fetchWithToken}
+                    fetchGetWithToken={this.fetchGetWithToken}
+                    fetchPostWithToken={this.fetchPostWithToken}
+                    deleteList={this.deleteList}
                 />
                 {this.renderLoginOrMain()}
                 {/* <Main /> */}
