@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import faker from 'faker'
 import React, { Component } from 'react'
-import { Search, Grid, Header, Segment, Button } from 'semantic-ui-react'
+import { Search, Grid, Header, Segment, Button, Menu } from 'semantic-ui-react'
 import { getToken, fetchGetWithToken, fetchPostWithToken, deleteList} from './Fetches.js';
 
 
@@ -21,53 +21,42 @@ export default class InputNew extends Component {
 
   handleResultSelect = (e, { result }) => this.setState({ value: result.title })
 
-  // handleSearchChange = (e, { value }) => {
-  //   this.setState({ isLoading: true, value })
-  //   const {products} = this.state
-
-  //   setTimeout(() => {
-  //     if (this.state.value.length < 1) return this.setState(initialState)
-
-  //     const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
-  //     const isMatch = (result) => re.test(result.title)
-
-  //     this.setState({
-  //       isLoading: false,
-  //       results: _.filter(this.state.products, isMatch),
-  //     })
-  //   }, 300)
-  // }
   handleSearchChange = (e, { value }) => {
     this.setState({ isLoading: true, value })
 
     setTimeout(() => {
       if (this.state.value.length < 1) return this.setState(initialState)
 
-      const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
+      const re = new RegExp(_.escapeRegExp(this.state.value), '')
       const isMatch = (result) => re.test(result.title)
 
       this.setState({
         isLoading: false,
-        results: _.filter(source, isMatch),
+        results: _.filter(this.state.products, isMatch),
       })
     }, 300)
+  }
+
+  handleSubmit =() =>{
+    this.props.addItem(this.state.value)
+    this.setState({
+      value: "",
+    })
   }
 
   getAllProducts = () => {
     fetchGetWithToken("products")
         .then((res) => res.json())
         .then(data=>{
-          console.log(data)
           if (data.products){
             let productArray = data.products.map(product => {return {title: product.product, description: product.category}})
-            console.log(productArray)
             this.setState({
               products:productArray,
             })
           }
         })
         .catch(console.error);
-}
+    }
 
   componentDidMount =() =>{
     this.getAllProducts()
@@ -79,8 +68,7 @@ export default class InputNew extends Component {
 
     return (
       <Grid>
-        <Grid.Column width={8}>
-        <h3>Enter a list item</h3>
+        <Grid.Column width={4}>
           <Search
             placeholder="Type in a list item"
             loading={isLoading}
@@ -92,13 +80,10 @@ export default class InputNew extends Component {
             value={value}
             {...this.props}
           /> 
-          <br></br>
-          <Button type='submit'>Add item</Button>
         </Grid.Column>
-        {/* <Grid.Column width={10}>
-          <Segment>
-          </Segment>
-        </Grid.Column> */}
+        <Grid.Column width={3}>
+          <Button type='submit' onClick={this.handleSubmit}>Add Item</Button>
+        </Grid.Column>
       </Grid>
     )
   }

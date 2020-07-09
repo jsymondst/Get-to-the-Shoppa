@@ -1,6 +1,6 @@
 import React from 'react'
 import ShareSegment from './ShareSegment'
-import { Icon, Label, Container, Button, Segment} from 'semantic-ui-react'
+import { Grid, Icon, Label, Container, Button, Segment} from 'semantic-ui-react'
 
 export default class ControlsBar extends React.Component { 
 
@@ -10,11 +10,11 @@ export default class ControlsBar extends React.Component {
            <Container>
                <ShareSegment />
                <br></br>
-               <div>
-                <Button name="save outline">Save List</Button>
+               <Grid.Row>
+                <Button color="teal"><Icon name='save'/>Save List</Button>
                 <Button color="teal"><Icon name='share'/>Share list</Button>
                 <Button><Icon name='delete'/>Delete list</Button>
-                </div>
+                </Grid.Row>
             </Container>
             </>
         );

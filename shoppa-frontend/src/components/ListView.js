@@ -31,9 +31,21 @@ export default class ListView extends React.Component {
     this.getMyLists()
   }
 
+  aFunction = () =>{
+    console.log("the function happened!")
+  }
+  
+
   renderLists = () => { 
     const {allLists} = this.state
-    return allLists.map(list => <ListObject key={list.id} name={list.name} icon={list.icon} id={list.id}/>)
+    return allLists.map(list => <ListObject 
+      key={list.id} 
+      name={list.name} 
+      icon={list.icon} 
+      id={list.id} 
+      handleImportList={this.props.handleImportList} 
+      handleAnimationChange={this.props.handleAnimationChange}
+      />)
   }
       
     render() { 

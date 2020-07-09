@@ -1,9 +1,8 @@
 import React from "react";
-import Nav from "./components/Nav";
 import Login from "./components/Login";
-import TestButtons from "./components/TestButtons";
+import LoggedInNav from "./components/LoggedInNav";
 import Main from "./components/Main";
-import NavBar from "./components/NavBar";
+// import NavBar from "./old stuff/NavBar";
 import SideBarNew from "./components/SideBarNew";
 
 const API_URL = "http://localhost:3001/";
@@ -103,30 +102,6 @@ class App extends React.Component {
         });
     };
 
-    //     render() {
-    //         const { user } = this.state;
-    //         return (
-    //             <div>
-    //                 <TestButtons
-    //                     logOut={this.logOut}
-    //                     user={user}
-    //                     fetchGetWithToken={this.fetchGetWithToken}
-    //                     fetchPostWithToken={this.fetchPostWithToken}
-    //                     deleteList={this.deleteList}
-    //                 />
-    //                 {this.renderLoginOrMain()}
-    //                 {/* <Main /> */}
-    //             </div>
-    //         );
-    //     }
-    //   }
-
-    updateAppUser = (username) => {
-        this.setState({
-            user: username,
-        });
-    };
-
     render() {
         const { user } = this.state;
         return (
@@ -135,8 +110,8 @@ class App extends React.Component {
         logOut={this.logOut}
         user={user}
         /> */}
-                <NavBar />
-                <TestButtons
+                {/* <NavBar /> */}
+                <LoggedInNav
                     logOut={this.logOut}
                     user={user}
                     fetchGetWithToken={this.fetchGetWithToken}

@@ -379,8 +379,8 @@ list_one_items = [
     {product: 'burgers', category: 'Meat'}, 
     {product: 'sausages', category: 'Meat'}, 
     {product: 'burger buns', category: 'Bread'}, 
-    {product: 'lettuce', category: 'produce'},
-    {product: 'tomatoes', category: 'produce'},
+    {product: 'lettuce', category: 'Produce'},
+    {product: 'tomatoes', category: 'Produce'},
 ]
 
 def create_random_list(list_size)
