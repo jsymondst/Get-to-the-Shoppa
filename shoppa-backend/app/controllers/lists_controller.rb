@@ -10,7 +10,7 @@ class ListsController < ApplicationController
                 products: list.listjson ? JSON.parse(list.listjson) : [] 
             }
         }
-        render json: all_lists, status: :ok   
+        render json:{ all_lists: all_lists }, status: :ok   
     end
 
     def show

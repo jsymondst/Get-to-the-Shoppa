@@ -7,6 +7,7 @@ class UsersController < ApplicationController
         @user = User.find_by(username: user_login_params[:username])
         if @user && @user.authenticate(user_login_params[:password])
             payload = encode_token({ user_id: @user.id, username: @user.username })
+            puts payload
             render json: { user: UserSerializer.new(@user), jwt: payload }, status: :accepted
         else
             render json: { message: "Invalid username or password" }, status: :unauthorized

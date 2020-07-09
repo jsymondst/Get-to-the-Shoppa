@@ -66,7 +66,7 @@ render() {
           </Button> */}
         <br></br>
           <Button onClick={this.handleAnimationChange('scale down')}>
-          Shopping Lists 
+          View your Shopping Lists 
          </Button>
 
         <Sidebar.Pushable as={Segment}>

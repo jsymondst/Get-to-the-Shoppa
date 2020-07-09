@@ -43,8 +43,3 @@ export default class TestButton extends React.Component {
     }
 }
 
-const fakeCreateListFetch = (listName) => {
-    return new Promise((resolve, reject) => {
-        resolve({ name: listName, id: 1 });
-    });
-};

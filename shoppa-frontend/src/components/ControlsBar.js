@@ -11,6 +11,7 @@ export default class ControlsBar extends React.Component {
                <ShareSegment />
                <br></br>
                <div>
+                <Button name="save outline">Save List</Button>
                 <Button color="teal"><Icon name='share'/>Share list</Button>
                 <Button><Icon name='delete'/>Delete list</Button>
                 </div>
