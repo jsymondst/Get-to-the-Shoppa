@@ -118,10 +118,12 @@ class App extends React.Component {
                     fetchPostWithToken={this.fetchPostWithToken}
                     deleteList={this.deleteList}
                 />
-                {this.loggedIn() ? null : (
+                {this.loggedIn() ? (
+                    <SideBarNew />
+                ) : (
                     <Login updateAppUser={this.updateAppUser} />
                 )}
-                <SideBarNew />
+                {/* <SideBarNew /> */}
                 {/* <Main /> */}
             </div>
         );

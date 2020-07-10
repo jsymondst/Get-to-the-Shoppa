@@ -1,44 +1,51 @@
-import PropTypes from 'prop-types'
-import React, { Component } from 'react'
-import Main from './Main'
-import ListView from './ListView'
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+import Main from "./Main";
+import ListView from "./ListView";
 import {
-  Button,
-  Checkbox,
-  Grid,
-  Header,
-  Icon,
-  Image,
-  Menu,
-  Segment,
-  Sidebar,
-} from 'semantic-ui-react'
+    Button,
+    Checkbox,
+    Grid,
+    Header,
+    Icon,
+    Image,
+    Menu,
+    Segment,
+    Sidebar,
+} from "semantic-ui-react";
 
-
-const YourListsSideBar = ({ animation, direction, visible, handleImportList, handleAnimationChange }) => (
+const YourListsSideBar = ({
+    animation,
+    direction,
+    visible,
+    handleImportList,
+    handleAnimationChange,
+    allLists,
+}) => (
     <Sidebar
-      as={Menu}
-      animation={animation}
-      direction={direction}
-      icon='labeled'
-      // inverted
-      vertical
-      visible={visible}
-      width='very wide'
+        as={Menu}
+        animation={animation}
+        direction={direction}
+        icon="labeled"
+        // inverted
+        vertical
+        visible={visible}
+        width="very wide"
     >
-      <Menu.Item as='a'>
-        <ListView handleImportList={handleImportList}
-        handleAnimationChange={handleAnimationChange}
-        
-        />
-      </Menu.Item>
+        <Menu.Item as="a">
+            <ListView
+                handleImportList={handleImportList}
+                handleAnimationChange={handleAnimationChange}
+                allLists={allLists}
+            />
+        </Menu.Item>
     </Sidebar>
-  )
-  
-  YourListsSideBar.propTypes = {
-      animation: PropTypes.string,
-      direction: PropTypes.string,
-      visible: PropTypes.bool,
-  }
+);
 
-  export default YourListsSideBar;
+YourListsSideBar.propTypes = {
+    animation: PropTypes.string,
+    direction: PropTypes.string,
+    visible: PropTypes.bool,
+};
+
+export default YourListsSideBar;

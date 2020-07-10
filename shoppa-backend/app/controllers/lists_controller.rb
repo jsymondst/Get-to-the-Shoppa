@@ -32,7 +32,26 @@ class ListsController < ApplicationController
     end
 
     def create
-        new_list = List.create(list_params)
+        
+        tidied_up_products = params[:list][:products].map{|item|
+            itemHash = {
+                product:item[:product],
+                category:item[:category],
+                checked:item[:checked],
+            }
+            itemHash
+        }
+        incoming_list_as_hash = {
+            name: params[:list][:name],
+            icon: params[:list][:icon],
+            listjson: JSON(tidied_up_products),
+        }        
+        
+        new_list=List.create(incoming_list_as_hash)
+        
+        # puts "???????????????????????????????????????"
+        # puts params
+        # puts "???????????????????????????????????????"
 
         Right.create(list: new_list, user: current_user)
 
@@ -76,20 +95,31 @@ class ListsController < ApplicationController
         elsif !list.users.any?{|user| user.id == current_user.id} 
             render json: {error: "not authorized"}, status: :unauthorized
         else
-            list_json = JSON(list_params[:products])
+            tidied_up_products = params[:list][:products].map{|item|
+                itemHash = {
+                    product:item[:product],
+                    category:item[:category],
+                    checked:item[:checked],
+                }
+                itemHash
+            }
+            incoming_list_as_hash = {
+                name: params[:list][:name],
+                icon: params[:list][:icon],
+                listjson: JSON(tidied_up_products),
+            }             
 
-            list_hash = {
-                name: list_params[:name],
-                icon: list_params[:icon],
-                listjson: list_json
+            list_save_success = list.update(incoming_list_as_hash)
+
+            outgoing_list_as_hash = {
+                name: list.name,
+                id: list.id,
+                icon: list.icon,
+                products: list.listjson ? JSON.parse(list.listjson) : [] ,
             }
 
-            list_save_success = list.update(list_hash)
-
-            list_hash[:id] = list.id
-
             if list_save_success
-                render json: list_hash, status: :accepted
+                render json: outgoing_list_as_hash, status: :accepted
             else
                 render json: {error: "list not saved"}, stats: :not_implemented
             end

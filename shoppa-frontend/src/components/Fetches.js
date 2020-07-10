@@ -1,5 +1,3 @@
-
-
 const API_URL = "http://localhost:3001/";
 
 export const getToken = () => {
@@ -28,6 +26,20 @@ export const fetchPostWithToken = (path, payload) => {
     return fetch(`${API_URL}${path}`, configObj);
 };
 
+export const fetchPatchWithToken = (path, payload) => {
+    const configObj = {
+        method: "PATCH",
+        headers: {
+            Authorization: `Bearer ${getToken()}`,
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+    };
+    // console.log(configObj);
+    return fetch(`${API_URL}${path}`, configObj);
+};
+
 export const deleteList = (id) => {
     const configObj = {
         method: "DELETE",
@@ -39,5 +51,3 @@ export const deleteList = (id) => {
         .then((res) => res.json())
         .then(console.log);
 };
-
-
